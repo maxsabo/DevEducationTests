@@ -25,7 +25,7 @@ namespace DevEducationTests
 
         public void CloseBrowser()
         {
-            driver.Close();
+            driver.Quit();
         }
     }
 }

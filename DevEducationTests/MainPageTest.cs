@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -151,12 +152,13 @@ namespace DevEducationTests
             driver.Url = Urls.mainPage;
             IWebElement indtagramLink = driver.FindElements(By.ClassName(pageModel.socialNetworkLinksClassName))[2];
             indtagramLink.Click();
-            
-            IWebElement indtagramLabel = driver.FindElement(By.TagName(socNet.instaImageTagName));
+            List<string> tabs = new List<string>(driver.WindowHandles);
+            driver.SwitchTo().Window(tabs[1]);
+            IWebElement instagramLabel = driver.FindElement(By.TagName(socNet.instaImageTagName));
 
-            string ActRes = indtagramLabel.Text;
+            string ActRes = instagramLabel.Text;
 
-            Assert.AreEqual("Международный IT-колледж", ActRes);
+            Assert.AreEqual("Dev.education", ActRes);
         }
         [Test]
         public void CheckVk()
@@ -164,10 +166,13 @@ namespace DevEducationTests
             driver.Url = Urls.mainPage;
             IWebElement VkLink = driver.FindElements(By.ClassName(pageModel.socialNetworkLinksClassName))[3];
             VkLink.Click();
+            //driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(10);
+            List<string> tabs = new List<string>(driver.WindowHandles);
+            driver.SwitchTo().Window(tabs[1]);
             IWebElement VkLabel = driver.FindElement(By.TagName(socNet.vkTagName));
             string ActRes = VkLabel.Text;
 
-            Assert.AreEqual("Международный IT-колледж", ActRes);
+            Assert.AreEqual("DevEducation", ActRes);
         }
 
         [Test]
@@ -176,11 +181,12 @@ namespace DevEducationTests
             driver.Url = Urls.mainPage;
             IWebElement ToutubeLink = driver.FindElements(By.ClassName(pageModel.socialNetworkLinksClassName))[4];
             ToutubeLink.Click();
-            
-            IWebElement title = driver.FindElement(By.TagName("h1"));
+            List<string> tabs = new List<string>(driver.WindowHandles);
+            driver.SwitchTo().Window(tabs[1]);
+            IWebElement title = driver.FindElement(By.XPath("/html/body/ytd-app/div/ytd-page-manager/ytd-browse/div[3]/ytd-c4-tabbed-header-renderer/app-header-layout/div/app-header/div[2]/div[2]/div/div[1]/div/div[1]/ytd-channel-name/div/div/yt-formatted-string"));
             string ActRes = title.Text;
 
-            Assert.AreEqual("Международный IT-колледж", ActRes);
+            Assert.AreEqual("DevEducation", ActRes);
         }
         [Test]
         public void CheckLinkDin()
@@ -188,10 +194,11 @@ namespace DevEducationTests
             driver.Url = Urls.mainPage;
             IWebElement linkDinLink = driver.FindElements(By.ClassName(pageModel.socialNetworkLinksClassName))[5];
             linkDinLink.Click();
+            List<string> tabs = new List<string>(driver.WindowHandles);
+            driver.SwitchTo().Window(tabs[1]);
             IWebElement title = driver.FindElement(By.TagName("h1"));
             string ActRes = title.Text;
-
-            Assert.AreEqual("Международный IT-колледж", ActRes);
+            Assert.AreEqual("DevEducation", ActRes);
         }
 
         [Test]
@@ -200,10 +207,12 @@ namespace DevEducationTests
             driver.Url = Urls.mainPage;
             IWebElement linkTwitter = driver.FindElements(By.ClassName(pageModel.socialNetworkLinksClassName))[6];
             linkTwitter.Click();
-            IWebElement title = driver.FindElement(By.XPath("/html/body/div/div/div/div[2]/main/div/div/div/div/div/div/div/div/div[1]/div/div[2]/div/div/div[2]/div/span"));
+            List<string> tabs = new List<string>(driver.WindowHandles);
+            driver.SwitchTo().Window(tabs[1]);
+            IWebElement title = driver.FindElement(By.XPath("/html/body/div/div/div/div[2]/main/div/div/div/div[1]/div/div[1]/div[1]/div/div/div/div/div[2]/div/h2/div/div/div/span[1]/span/span"));
             string ActRes = title.Text;
 
-            Assert.AreEqual("@DevEducation2", ActRes);
+            Assert.AreEqual("Deveducation", ActRes);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace DevEducationTests.POM
     class SocialNetworksModel
     {
         public string facebookLinkTagName = "h1";
-        public string instaImageTagName = "h1";
+        public string instaImageTagName = "h2";
         public string twitterTagName = "h1";
         public string vkTagName = "h1";
         public string youtubeid = "title";
